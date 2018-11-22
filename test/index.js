@@ -87,8 +87,6 @@ app.runTests = () => {
         if (subTests.hasOwnProperty(testName)) {
           // Use IIFE to execute test and contain variables in a closue to avoid in clobbering/cluttering
           ((tempFuncName, testFunction) => {
-            // const tempFuncName = testName
-            // const testFunction = subTests[testName]
             // use try/catch to evaluate the test safely
             try {
               // excute test
