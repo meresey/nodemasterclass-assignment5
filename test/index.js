@@ -86,9 +86,9 @@ app.runTests = () => {
         // filter only those properties that belong to the object as opposed to the prototype
         if (subTests.hasOwnProperty(testName)) {
           // Use IIFE to execute test and contain variables in a closue to avoid in clobbering/cluttering
-          (() => {
-            const tempFuncName = testName
-            const testFunction = subTests[testName]
+          ((tempFuncName, testFunction) => {
+            // const tempFuncName = testName
+            // const testFunction = subTests[testName]
             // use try/catch to evaluate the test safely
             try {
               // excute test
@@ -128,7 +128,7 @@ app.runTests = () => {
                 lib.server.close()
               }
             }
-          })()
+          })(testName, subTests[testName])
         }
       }
     }
