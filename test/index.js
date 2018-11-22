@@ -86,14 +86,14 @@ app.runTests = () => {
         // filter only those properties that belong to the object as opposed to the prototype
         if (subTests.hasOwnProperty(testName)) {
           // Use IIFE to execute test and contain variables in a closue to avoid in clobbering/cluttering
-          ((tempFuncName, testFunction) => {
+          ((testName, testFunction) => {
             // use try/catch to evaluate the test safely
             try {
               // excute test
               testFunction(() => {
                 // If code executes to this point, then the test succeeded
                 // Print test name to screen
-                console.log('\x1b[32m%s\x1b[0m', `${tempFuncName}`)
+                console.log('\x1b[32m%s\x1b[0m', `${testName}`)
                 // Increment number of tests executed successfully
                 sucessfulTests++
                 // increment number of tests executed
@@ -109,7 +109,7 @@ app.runTests = () => {
 
             } catch (testError) {
               // Print test name to screen
-              console.log('\x1b[31m%s\x1b[0m', `${tempFuncName}`)
+              console.log('\x1b[31m%s\x1b[0m', `${testName}`)
               // collect details of failed tests
               failedTests.push({
                 testName,
